@@ -107,3 +107,5 @@ express-model正因此，才能得以如此灵活。
 	
 	})
 ```
+
+下面的Project你可以看看Yorkie是如何使用Express-Model的：[https://github.com/yorkie/ikanbao.fm](https://github.com/yorkie/ikanbao.fm)
