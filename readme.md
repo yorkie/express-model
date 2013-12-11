@@ -14,7 +14,7 @@
 
 秉承了SeaJS与RequireJS大道至简的接口设计，你首先要在服务器开启时初始化express-model，即Express中的app.js
 
-```javascrpt
+```javascript
 var model = require('express-model')
 var util = require('util')
 	
