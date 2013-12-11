@@ -18,7 +18,7 @@
 var model = require('express-model')
 var util = require('util')
 	
-//..some codes...
+// some codes...
 // 你必须通过传入一个字符串参数，让express-model知道你所定义的Model所在的位置
 global.Models = model(util.format('%s/%s', __dirname, 'models');
 ```
