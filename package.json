@@ -1,7 +1,7 @@
 {
   "name": "express-model",
+  "author": "Yorkie Neil <yorkiefixer@gmail.com>",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node app"
   },
