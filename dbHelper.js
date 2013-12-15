@@ -26,5 +26,15 @@ default_DB.use = function(name, fn) {
 	return thisDatabaseContext;
 }
 
+// create a readable stream for a database
+default_DB.createReadStream = function(name) {
+	// TODO
+}
+
+// create a writable stream for another database
+default_DB.createWriteStream = function(name) {
+	// TODO
+}
+
 module.exports = default_DB
 // End - !

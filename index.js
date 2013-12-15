@@ -85,12 +85,18 @@ function _initModels(err, files, path) {
  * exports
  */
 
-module.exports = function(path) {
+module.exports = function(path, serverOrPort) {
 
 	if (!path) throw '';
 	fs.readdir(path, function(err, files) {
 		_initModels(err, files, path)
 	})
+
+	var port = null;
+	var server = serverOrPort;
+	if (typeof serverOrPort == 'number')
+		port = serverOrPort;
+	// TODO: Binding the passed server/express object
 
 	return {
 		define: _defineModel,
