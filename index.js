@@ -14,7 +14,7 @@ var db = require('./dbHelper')
  */
 
 function isFunction(fn) {
-	return Object.prototype.toString.call(fn) === '[object Function]'
+  return Object.prototype.toString.call(fn) === '[object Function]'
 }
 
 /**
@@ -23,10 +23,10 @@ function isFunction(fn) {
 
 function _defineModel(modelId, fn) {
 
-	var newModel = Object.create(null)
-	fn.apply(this, [ newModel, db, Object.create(null) ])
+  var newModel = Object.create(null)
+  fn.apply(this, [ newModel, db, Object.create(null) ])
 
-	return models[modelId] = newModel
+  return models[modelId] = newModel
 }
 
 /**
@@ -35,34 +35,34 @@ function _defineModel(modelId, fn) {
 
 function _useModel(modelId, args, fn) {
 
-	var result = models[modelId]
-	if (!result)
-		throw util.format('Model: %s not found', modelId)
+  var result = models[modelId]
+  if (!result)
+    throw util.format('Model: %s not found', modelId)
 
-	if (!args) {
-		args = []
-	}
+  if (!args) {
+    args = []
+  }
 
-	if (!util.isArray(args)) {
-		if (!isFunction(args)) {
-			args = [args]
-		} else {
-			fn = args;
-			args = [];
-		}
-	}
+  if (!util.isArray(args)) {
+    if (!isFunction(args)) {
+      args = [args]
+    } else {
+      fn = args;
+      args = [];
+    }
+  }
 
-	if (!isFunction(fn)) {
-		fn = function() {}
-	}
+  if (!isFunction(fn)) {
+    fn = function() {}
+  }
 
-	if (result._constructor) {
-		result._constructor.apply(this, args)
-		delete result._constructor
-	}
+  if (result._constructor) {
+    result._constructor.apply(this, args)
+    delete result._constructor
+  }
 
-	fn.apply(result)
-	return result
+  fn.apply(result)
+  return result
 }
 
 /**
@@ -70,15 +70,15 @@ function _useModel(modelId, args, fn) {
  */
 
 function _initModels(err, files, path) {
-	
-	if (err) throw '';
-	if (!files.length) return;
+  
+  if (err) throw '';
+  if (!files.length) return;
 
-	// If you are atmpting to define models in a 2nd directory, you must require it by hands.
-	files.filter(function(file) {
-		if (/\.js$/.test(file)) 
-		require(util.format('%s/%s', path, file))
-	})
+  // If you are atmpting to define models in a 2nd directory, you must require it by hands.
+  files.filter(function(file) {
+    if (/\.js$/.test(file)) 
+    require(util.format('%s/%s', path, file))
+  })
 }
 
 /**
@@ -87,21 +87,21 @@ function _initModels(err, files, path) {
 
 module.exports = function(path, serverOrPort) {
 
-	if (!path) throw '';
-	fs.readdir(path, function(err, files) {
-		_initModels(err, files, path)
-	})
+  if (!path) throw '';
+  fs.readdir(path, function(err, files) {
+    _initModels(err, files, path)
+  })
 
-	var port = null;
-	var server = serverOrPort;
-	if (typeof serverOrPort == 'number')
-		port = serverOrPort;
-	// TODO: Binding the passed server/express object
+  var port = null;
+  var server = serverOrPort;
+  if (typeof serverOrPort == 'number')
+    port = serverOrPort;
+  // TODO: Binding the passed server/express object
 
-	return {
-		define: _defineModel,
-		use: _useModel
-	}
+  return {
+    define: _defineModel,
+    use: _useModel
+  }
 }
 
 // End - !

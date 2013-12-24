@@ -9,7 +9,7 @@ Models.define('yourModelName', function( out, db, cache ) {
     // db 将引用定义在express-model/supportDB目录下对应的数据库驱动文件
     // express默认使用moogoose
     // 同时db提供一个use，来让你使用其它声明在supportDB的数据库，例如
-    db.use('mysql', function(storage) {
+    db.use(['mysql'], function(storage) {
         // mysql的操作
     })
 
